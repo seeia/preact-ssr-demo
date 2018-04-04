@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack= require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin') // 分离css文件
 const HtmlWebpackPlugin = require('html-webpack-plugin') // 简化HTML文件的创建
 
@@ -6,17 +7,24 @@ const ENV = process.env.NODE_ENV || 'development'
 const renderMode = process.env.Render_Mode || 'client'
 const CSS_MAPS = ENV!=='production';
 const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
-console.log('__dirname renderMode', __dirname, renderMode)
 
+console.log('ENV', ENV)
+function getEntryFiles (){
+	if(ENV === 'development'){
+		return ['./main.js', hotMiddlewareScript]
+	}else{
+		return './main.js'
+	}
+}
 
 module.exports = {
   context: path.resolve(__dirname, "src/index"),
-  entry: [renderMode === 'server' ? './App.js' : './main.js', hotMiddlewareScript],
+	entry:  getEntryFiles(),
   output: {
     path: path.resolve(__dirname, "public/dist"),
 		publicPath: '/',
 		filename: 'index_bundle.js'
-  },
+	},
   resolve: {
 		extensions: ['.jsx', '.js', '.json', '.less'],
 		modules: [
@@ -25,6 +33,7 @@ module.exports = {
 			'node_modules'
 		],
 		alias: {
+			'@': path.join(__dirname, '..', 'src'),
 			components: path.resolve(__dirname, "src/index/components"),    // used for tests
 			style: path.resolve(__dirname, "src/index/style"),
 			'react': 'preact-compat',
@@ -107,9 +116,7 @@ module.exports = {
 			},
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin(),
-  ],
+  plugins: ENV === 'development' ? [new HtmlWebpackPlugin(), new webpack.HotModuleReplacementPlugin()] : [new HtmlWebpackPlugin()],
   devtool: ENV==='production' ? 'source-map' : 'cheap-module-eval-source-map',
   stats: { colors: true }
 }

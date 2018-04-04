@@ -16,7 +16,6 @@ export default class App extends Component {
 	}
 	componentWillMount(){
 		console.log('App componentWillMount')
-
 	}
 	componentDidMount(){
 		console.log('App componentDidMount')
@@ -46,7 +45,7 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<Header></Header>
-        <div>1</div>
+        <div>111dasdaddsda</div>
 				<div onClick={this.handleClick.bind(this)}>
 					{this.state.isToggleOn ? 'ON' : 'OFF'}
 				</div>
