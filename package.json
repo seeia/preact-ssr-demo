@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development Render_Mode=client supervisor -w src app.js",
     "build": "cross-env NODE_ENV=production Render_Mode=client webpack --progress",
-    "start": "cross-env NODE_ENV=production pm2 start app.js "
+    "start": "cross-env NODE_ENV=production pm2 start app.js ",
+    "publish": "pm2 deploy ecosystem.json testing"
   },
   "dependencies": {
     "babel-register": "^6.26.0",
