@@ -26,7 +26,7 @@
     }],
     "deploy": {
       "testing": {
-        "user": "www",
+        "user": "root",
         "host": "129.204.0.214",
         "ref": "origin/master",
         "repo": "git@github.com:seeia/preact-ssr-demo.git",
