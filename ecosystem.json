@@ -1,0 +1,37 @@
+{
+    "apps": [{
+      "name": "myapp",
+      "script": "./app.js",
+      "watch": false,
+      "max_memory_restart": "1024M",
+      "instances": "1",
+      "exec_mode": "cluster",
+      "log_date_format": "YYYY-MM-DD HH:mm Z",
+      "error_file": "/data/logs/node/iget-log-record/iget-log-record_err.log",
+      "out_file": "/data/logs/node/iget-log-record/iget-log-record_out.log",
+      "combine_logs": true,
+      "merge_logs": true,
+      "env": {
+        "SERVER_CONFIG": "development"
+      },
+      "env_testing": {
+        "SERVER_CONFIG": "testing"
+      },
+      "env_simulation": {
+        "SERVER_CONFIG": "simulation"
+      },
+      "env_production": {
+        "SERVER_CONFIG": "production"
+      }
+    }],
+    "deploy": {
+      "testing": {
+        "user": "www",
+        "host": "129.204.0.214",
+        "ref": "origin/master",
+        "repo": "git@github.com:seeia/preact-ssr-demo.git",
+        "path": "/root/www/demo",
+        "post-deploy": "npm install; npm run dev"
+      }
+    }
+  }
