@@ -1,6 +1,6 @@
 {
     "apps": [{
-      "name": "myapp",
+      "name": "preact-ssr-demo",
       "script": "./app.js",
       "watch": false,
       "max_memory_restart": "1024M",
@@ -30,7 +30,7 @@
         "host": "129.204.0.214",
         "ref": "origin/master",
         "repo": "git@github.com:seeia/preact-ssr-demo.git",
-        "path": "/root/www/demo",
+        "path": "/root/www/demo/preact-ssr-demo",
         "post-deploy": "npm install; npm run dev"
       }
     }
